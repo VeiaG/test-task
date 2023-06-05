@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <div class="calculator">
+        <div class="calculator__currencyForm">
+        
+            <label for="c1">Я віддам
+                <input #c1 id="c1" [value]="firstValue" type="number" (keyup)="FvalueChange(c1.value , c2.value)" >
+            </label>
+            
+            <select name="currencySelect" id="c1_s" (change)="FvalueChange(c1.value , c2.value )" [(ngModel)]="firstCurrency">
+                <option value="980">UAH</option>
+                <option value="840">USD</option>
+                <option value="978">EUR</option>
+            </select>
+        </div>
+        <div class="calculator__arrow"></div>
+        <div class="calculator__currencyForm">
+            
+            <label for="c2">Отримаю
+                <input #c2 id="c2" [value]="secondValue" type="number" (keyup)="SvalueChange(c1.value , c2.value)">
+            </label>
+            
+            <select name="currencySelect" id="c2_s" (change)="FvalueChange(c1.value , c2.value)" [(ngModel)]="secondCurrency" >
+                <option value="980">UAH</option>
+                <option selected ="selected" value="840">USD</option>
+                <option value="978">EUR</option>
+            </select>
+        </div>
+    </div>
+</div>

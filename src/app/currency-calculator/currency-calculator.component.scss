@@ -1,0 +1,88 @@
+.wrapper{
+    height:calc(100vh - 64px);
+    width:100vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:32px;
+}
+
+
+.calculator{
+   
+    display:flex;
+    align-items: center;
+    position: relative;
+
+    &:before{
+        z-index:1;
+        content:"";
+        position: absolute;
+        width:110%;
+        left:-5%;
+        aspect-ratio: 1;
+        background:var(--foreground-color);
+        border-radius:50%;
+        transition: all 0.3s ease 0s;
+    }
+    &:hover{
+        &:before{
+            border-radius:65% 35% 66% 34% / 25% 64% 36% 75%   ;
+        }
+    }
+    &__arrow{
+        z-index:2;
+        background:var(--bg-color);
+        mask-image:url(../../assets/images/arrow.svg);
+        mask-size:cover;
+        width:64px;
+        aspect-ratio: 1;
+    }
+    &__currencyForm{
+        color:var(--bg-color);
+        z-index:2;
+        display:flex;
+        gap:8px;
+        align-items: end;
+        label{
+            display:flex;
+            flex-direction: column;
+            gap:8px
+        }
+    }
+    select{
+        border-radius: 16px;
+        height:32px;
+        font-family: 'Inter', sans-serif;
+        border:none;
+        outline:none;
+        box-sizing: border-box;
+        font-size:16px;
+        transition: all 0.3s ease 0s;
+        &:hover{
+            scale:1.02;
+        }
+    }
+    input{
+        border-radius: 16px;
+        outline:none;
+        border:none;
+        height:32px;
+        padding: 0 16px;
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+        font-size:16px;
+        transition: all 0.3s ease 0s;
+        &:hover{
+            scale:1.02;
+        }
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+}
