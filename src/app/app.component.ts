@@ -10,9 +10,13 @@ export class AppComponent {
   isFetched: boolean = false;
   ngOnInit(){
     fetch("https://api.monobank.ua/bank/currency")
-    .then(respone => respone.json())
+    .then(respone => {
+      if(!respone.ok){
+        throw Error("Помилка сервера");
+      }
+      return respone.json()
+    })
     .then(currencyObj => {
-      console.log(currencyObj)
       this.curArray = currencyObj;
       this.isFetched = true;
     });

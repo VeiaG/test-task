@@ -19,7 +19,7 @@ export class CurrencyCalculatorComponent {
     findCurrency( code1 : number , code2 : number){
       return this.curArray.find( (item: any) => item.currencyCodeA === code1 && item.currencyCodeB === code2);
     };
-    FvalueChange(c1:string , c2: string){
+    valueChange(c1:string , c2: string , isFirst: boolean){
       if(this.isFetched){
         this.firstValue = parseFloat(c1);
         this.secondValue = parseFloat(c2);
@@ -27,18 +27,12 @@ export class CurrencyCalculatorComponent {
         const curCurrency = this.findCurrency(parseInt(this.firstCurrency),parseInt(this.secondCurrency)) ||this.findCurrency(parseInt(this.secondCurrency),parseInt(this.firstCurrency)) ;
         
         let sellPrice = curCurrency ? curCurrency.currencyCodeB == this.secondCurrency ? curCurrency.rateSell: curCurrency.rateBuy : 1;
-
-        this.secondValue = this.round((this.firstValue/sellPrice));
-      }
-    }
-    SvalueChange(c1:string , c2: string){
-      if(this.isFetched){
-        this.firstValue = parseFloat(c1);
-        this.secondValue = parseFloat(c2);
-        const curCurrency = this.findCurrency(parseInt(this.firstCurrency),parseInt(this.secondCurrency)) ||this.findCurrency(parseInt(this.secondCurrency),parseInt(this.firstCurrency)) ;
-        let buyPrice = curCurrency ? curCurrency.currencyCodeB == this.secondCurrency ? curCurrency.rateSell: curCurrency.rateBuy : 1; 
-
-        this.firstValue = this.round(this.secondValue *buyPrice);
+        if(isFirst){
+          this.secondValue = this.round((this.firstValue/sellPrice));
+        }else{
+          this.firstValue = this.round(this.secondValue *sellPrice);
+        }
+        
       }
     }
 }
